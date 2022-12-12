@@ -1,15 +1,17 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
     public float radius = 2f;
+    public Transform interactionTransform;
 
     bool close = false;
     Transform player;
 
     bool hasInteracted = false;
 
-    //so we are able to call it and overwrite in other scripts
+    //so we are able to call it and override in other scripts
     public virtual void Interact ()
     {
         Debug.Log("Picked up" + transform.name);
@@ -19,7 +21,7 @@ public class Interactable : MonoBehaviour
     {
         if (close && !hasInteracted)
         {
-            float distance = Vector3.Distance(player.position, transform.position);
+            float distance = Vector3.Distance(player.position, interactionTransform.position);
             if (distance <= radius)
             {
                 Interact();
@@ -46,9 +48,13 @@ public class Interactable : MonoBehaviour
 
     //this allows us see the field area on how close the player can get
     void OnDrawGizmosSelected()
-    {   //set color of outline
+    {
+        if (interactionTransform == null)
+            interactionTransform = transform;
+        
+        //set color of outline
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
 }
