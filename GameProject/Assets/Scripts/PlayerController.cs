@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Interactable close;
+    //public Interactable close;
     public float speed = 5.0f;
     private float mspeed = 1.0f;
     //private float turnSpeed = 25.0f;
@@ -76,18 +76,18 @@ public class PlayerController : MonoBehaviour
         //rbAddForce(moveDirection.normalized * mspeed * 10f);
 
         //check if we are hitting an interactable
-        if (forwardInput)
+       /* if (forwardInput)
         {
             Interactable interactable = GetComponent<Collider>().GetComponent<Interactable>();
             if (interactable != null)
             {
                 SetClose(interactable);
             }
-        }
+        }*/
 
     }
 
-    void SetClose (Interactable newClose)
+    /*void SetClose (Interactable newClose)
     {
         if (newClose != close)
         {
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         //close = newClose;
         newClose.IsClose(transform);
-    }
+    }*/
 
     
 
