@@ -7,7 +7,7 @@ public class Link : MonoBehaviour
 
 	public void OpenRepository()
 	{
-		Application.OpenURL("https://github.com/Kekbabus/Project_Game");
+		Application.OpenURL("https://github.com/Kekbabus/Projectrepo_endsem");
 
 	}
 
