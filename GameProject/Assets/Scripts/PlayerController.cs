@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float horizontalInput2 = Input.GetAxis("Horizontal");
-        //float forwardInput2 = Input.GetAxis("Vertical");
          horizontalInput = Input.GetAxis("Horizontal");
          forwardInput = Input.GetAxis("Vertical");
 
@@ -58,45 +56,16 @@ public class PlayerController : MonoBehaviour
         {
             jumpTime -= Time.deltaTime;
         }
-        //playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput2);
-         //playerRb.AddForce(focalPoint.transform.forward * speed * horizontalInput2);
 
-        //move player foward here
-        // transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        //transform.Translate(Vector3.horizontal * Time.deltaTime * speed * horizontalInput);
-
-        //gets player model to rotate 
-        //transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0.0f, forwardInput);
 
         transform.position += moveDirection * mspeed;
 
-        //moveDirection = orientation.forward * forwardInput * orientation.right * horizontalInput;
-        //rbAddForce(moveDirection.normalized * mspeed * 10f);
 
-        //check if we are hitting an interactable
-       /* if (forwardInput)
-        {
-            Interactable interactable = GetComponent<Collider>().GetComponent<Interactable>();
-            if (interactable != null)
-            {
-                SetClose(interactable);
-            }
-        }*/
 
     }
 
-    /*void SetClose (Interactable newClose)
-    {
-        if (newClose != close)
-        {
-            close = newClose;
-        }
-
-        //close = newClose;
-        newClose.IsClose(transform);
-    }*/
 
     
 

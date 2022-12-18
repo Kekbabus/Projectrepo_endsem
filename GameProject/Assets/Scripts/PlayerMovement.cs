@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -38,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Create an input where pressed R, restarts the current LEVEL
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         MyInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -51,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isGrounded && jumpTime >0)
+        if (!isGrounded && jumpTime > 0)
         {
             rb.AddForce(0, jumpHeight, 0);
         }
@@ -61,15 +67,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Map")
         {
-            jumpTime =0.2f;
+            jumpTime = 0.2f;
             isGrounded = true;
         }
     }
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (isGrounded)
+        {
+            // Only move the player if they are on the ground
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
     }
 }
