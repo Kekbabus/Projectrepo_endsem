@@ -3,11 +3,10 @@ using UnityEngine.UI;
 
 public class BackButton : MonoBehaviour
 {
-    public Canvas previousCanvas;
+    public Canvas currentCanvas;
 
-    public void GoBack()
+    public void goBack()
     {
-        previousCanvas.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        currentCanvas.gameObject.SetActive(false);
     }
 }

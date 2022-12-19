@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Deactivate the cursor at the start of the game
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false; 
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -39,6 +43,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the player has pressed the ESC key
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Reactivate the cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         //Create an input where pressed R, restarts the current LEVEL
         if (Input.GetKeyDown(KeyCode.R))
         {
